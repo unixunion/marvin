@@ -2,7 +2,7 @@
 import os
 import unittest
 
-from libmarvin import util
+from libmarvin import util, Plugin
 from libmarvin.intents.nullplugin import NullPlugin
 from libmarvin.util import MissingProperty
 
@@ -26,4 +26,13 @@ class UtilTest(unittest.TestCase):
         self.assertEqual(method_instance_output[1:], (('arg1', 'arg2'), {'kw1': 'kw1', 'kw2': 'kw2'}) )
 
         # check static method has all its marbels
-        self.assertEqual(o.some_static_method("arg1", "arg2"), ('arg1', 'arg2') )
+        self.assertEqual(o.some_static_method("arg1", "arg2"), (('arg1', 'arg2'), {}) )
+
+        # call a method by string name
+        some_method=o.get_method_by_name('some_static_method')
+        self.assertEqual(some_method("arg1", "arg2", kw1="kw1", kw2="kw2"), (('arg1', 'arg2'), {'kw1': 'kw1', 'kw2': 'kw2'}) )
+
+        # call non-static method by name
+        some_method=o.get_method_by_name('some_method')
+        self.assertEqual(some_method("arg1", "arg2", kw1="kw1", kw2="kw2")[1:], (('arg1', 'arg2'), {'kw1': 'kw1', 'kw2': 'kw2'}))
+        self.assertIsInstance(some_method()[0], Plugin)

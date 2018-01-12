@@ -29,6 +29,7 @@ def plugin(plugin_name, *args, **kwargs):
         'a'
     """
 
+
     plugin = libmarvin.plugin_registry(plugin_name, *args, **kwargs)
     logging.debug("Setting up the plugin instance with api and kwargs")
     return plugin(api=None, *args, **kwargs)

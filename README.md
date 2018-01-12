@@ -1,6 +1,6 @@
 # marvin
 
-Marvin is a pluggable chatops bot, which uses natural langing processing
+Marvin is a plugable chatops bot, which uses natural langing processing
 to determine intents.
 
 # status
@@ -11,14 +11,33 @@ to determine intents.
 
     conda create -n py36-marvin python=3.6
     conda activate py36-marvin
-    conda install scikit-learn
-    pip install -U sklearn-crfsuite
     pip install pyyaml requests
     pip install rasa_nlu scipy
 
-# preparing spacy for nlp
+# configuring backends
 
+config/*.json contain pure spacy and mitie+spacy pipelines.
+
+Choose one or both of:
+
+## mitie
+
+    pip install git+https://github.com/mit-nlp/MITIE.git
+
+Then download https://github.com/mit-nlp/MITIE/releases/download/v0.4/MITIE-models-v0.2.tar.bz2
+and put `total_word_feature_extractor.dat` into data/
+
+## spacy
+
+    pip install -U spacy
     python -m spacy download en
+    # conda: conda install scikit-learn
+    # pip: pip install -U scikit-learn scipy sklearn-crfsuite
+    pip install -U sklearn-crfsuite
+
+## mitie + spacy
+
+Do both above!
 
 # Running the training data editor
 
@@ -26,24 +45,33 @@ to determine intents.
 
 edit training sets
 
-# Running rasa
+# Configuring
 
-## Training nlu trainer data
-### nuke projects/default
+see config/
 
-    rm -rf projects/default
+# Training
 
-### Train the AI:
+Edit data/database.md
 
-    python -m rasa_nlu.train -c  configs/config_spacy.json
+# Running rasa server
 
-## Running
+## Training and Running
 
-    python -m rasa_nlu.server -c configs/config_spacy.json
+see start_mitie.sh and start_spacey.sh
 
 ## testing
 
+### shell
+
+    python shell.py
+
+### curl
+
     curl -X POST localhost:5000/parse -d '{"q":"hello"}' | python -m json.tool
+
+### discord
+
+    DISCORD_KEY='foo' python discord_bot.py
 
 
 ## reference

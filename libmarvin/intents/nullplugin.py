@@ -23,4 +23,4 @@ class NullPlugin(Plugin):
 
     @staticmethod
     def some_static_method(*args, **kwargs):
-        return args
+        return args, kwargs

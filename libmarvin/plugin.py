@@ -89,6 +89,10 @@ class Plugin(object):
         functools.update_wrapper(_d, object_class)
         return _d
 
+    # return a method
+    def get_method_by_name(self, method):
+        return getattr(self, method)
+
     def __call__(self, *args, **kwargs):
         """
         When you call the registry with the name of a plugin eg: 'NullPlugin', as the first arg, this returns the class

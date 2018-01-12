@@ -18,8 +18,12 @@ class BotShell(cmd.Cmd):
 
     def default(self, line):
         line = line.lower()
-        r = requests.post("http://localhost:5000/parse", data='{"q": "%s"}' % line)
-        pprint.pprint (r.json())
+        try:
+            r = requests.post("http://localhost:5000/parse", data='{"q": "%s"}' % line)
+            pprint.pprint (r.json())
+        except Exception as e:
+            print (e)
+            pass
 
 if __name__ == '__main__':
     BotShell().cmdloop()

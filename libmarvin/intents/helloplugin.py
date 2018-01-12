@@ -17,8 +17,12 @@ class HelloPlugin(Plugin):
         self.kwargs = kwargs
 
     @staticmethod
-    def hello(*args, author=None, line=None, **kwargs):
+    async def hello(*args, author=None, line=None, **kwargs):
         return "hello %s!" % (author)
+
+    @staticmethod
+    async def gbye(*args, author=None, line=None, **kwargs):
+        return "goodbye human!"
 
     # default method to call if no double underscored method mentioned in intent name
     def default(self, *args, **kwargs):

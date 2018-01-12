@@ -16,14 +16,13 @@ class Session:
     def get_intent_plugin(self, intent, *args, **kwargs):
         if not intent in self.plugin_instances:
             self.plugin_instances[intent] = util.plugin(intent, *args, **kwargs)
-            # return util.plugin(intent, *args, **kwargs)
         return self.plugin_instances[intent]
 
     @staticmethod
     def get_intent_plugin_method(plugin, method, *args, **kwargs):
         return plugin.get_method_by_name(method, *args, **kwargs)
 
-    def query(self, line=None, author=None):
+    async def query(self, line=None, author=None, *args, **kwargs):
         r = requests.post("http://localhost:5000/parse", data='{"q": "%s"}' % line)
         print (r.json())
 
@@ -33,10 +32,11 @@ class Session:
             try:
                 plugin_name = r.json()['intent']['name'].split("__")[0]
                 plugin_method_name = r.json()['intent']['name'].split("__")[1]
-
                 plugin = self.get_intent_plugin(plugin_name)
                 plugin_method = self.get_intent_plugin_method(plugin, plugin_method_name)
-                return plugin_method(author=author, line=line)
+                # return plugin_method(author=author, line=line, **kwargs)
+                result = await plugin_method(author=author, line=line, **kwargs)
+                return "%s" % result
             except Exception as e:
                 return "exception %s" % e
         else:
@@ -44,7 +44,9 @@ class Session:
                 logging.info("getting intent plugin: %s" % intent_name)
                 plugin = self.get_intent_plugin(intent_name)
                 plugin_method = self.get_intent_plugin_method(plugin, 'default')
-                return plugin_method(author=author, line=line)
+                # return plugin_method(author=author, line=line, **kwargs)
+                result = await plugin_method(author=author, line=line, **kwargs)
+                return "%s" % result
             except Exception as e:
                 logging.error( "unable to reach plugin: %s, %s" % (intent_name, e))
                 return "unable to reach plugin: %s" % intent_name

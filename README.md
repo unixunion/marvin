@@ -1,3 +1,12 @@
+# marvin
+
+Marvin is a pluggable chatops bot, which uses natural langing processing
+to determine intents.
+
+# status
+
+*NOT READY*, NLP development underway, nothing else is done.
+
 # requirements
 
     conda create -n py36-marvin python=3.6
@@ -7,17 +16,20 @@
     pip install pyyaml requests
     pip install rasa_nlu scipy
 
-# preparing spacy
+# preparing spacy for nlp
 
     python -m spacy download en
 
-# Runing the training data editor
+# Running the training data editor
 
     rasa-nlu-trainer -s database.json
 
+edit training sets
+
 # Running rasa
 
-## Training
+## Training nlu trainer data
+### nuke projects/default
 
     rm -rf projects/default
 

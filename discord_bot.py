@@ -15,6 +15,8 @@ sessions = {}
 
 Cache.set("discord_api", client)
 
+min_confidence = 0.45
+
 def remove_self_mentions(content):
     logging.info("remove_self_mentions from: %s" % content)
     return re.sub(r'<@\d+>', '', content)
@@ -36,30 +38,28 @@ async def on_message(message):
 
     logging.info(message.content)
 
-    msg = message # type: discord.Channel
-
+    # msg = message # type: discord.Channel
 
     if client.user.id in message.raw_mentions:
-
+        # tmp = await client.send_message(message.channel, 'Processing...')
         altered_content = remove_self_mentions(message.content)
-
         session = get_user_session(message.author.name)
-
-        tmp = await client.send_message(message.channel, 'Processing...')
-
         result = await session.query(author=message.author.name, line=altered_content, message_object=message)
-        await client.edit_message(tmp, '{}'.format(result))
+        # await client.edit_message(tmp, '{}'.format(result))
+        # if result[1] > min_confidence:
+        await client.send_message(message.channel, result[0])
 
-    elif message.content.startswith('!'):
-
-        altered_content = re.sub(r'^!', '', message.content)
-
-        session = get_user_session(message.author.name)
-
-        tmp = await client.send_message(message.channel, 'Processing...')
-        result = await session.query(author=message.author.name, line=altered_content, message_object=message)
-        await client.edit_message(tmp, '{}'.format(result))
+    # elif message.content.startswith('!'):
+    # elif message.author.id is not client.user.id:
+    #     # tmp = await client.send_message(message.channel, 'Processing...')
+    #     altered_content = re.sub(r'^!', '', message.content)
+    #     session = get_user_session(message.author.name)
+    #     result = await session.query(author=message.author.name, line=altered_content, message_object=message)
+    #     # await client.edit_message(tmp, '{}'.format(result))
+    #     if result[1] > min_confidence:
+    #         await client.send_message(message.channel, result[0])
     else:
+        logging.info("message %s author: %s" % (message.content, message.author.id))
         pass
 
 client.run(os.environ['DISCORD_KEY'])

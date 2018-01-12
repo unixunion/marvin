@@ -4,7 +4,7 @@ import unittest
 
 from libmarvin import util, Plugin
 from libmarvin.intents.nullplugin import NullPlugin
-from libmarvin.util import MissingProperty
+from libmarvin.util import MissingProperty, get_key_from_kwargs
 
 
 class UtilTest(unittest.TestCase):
@@ -36,3 +36,10 @@ class UtilTest(unittest.TestCase):
         some_method=o.get_method_by_name('some_method')
         self.assertEqual(some_method("arg1", "arg2", kw1="kw1", kw2="kw2")[1:], (('arg1', 'arg2'), {'kw1': 'kw1', 'kw2': 'kw2'}))
         self.assertIsInstance(some_method()[0], Plugin)
+
+    def test_get_key_from_kwargs(self):
+        with self.assertRaises(MissingProperty):
+            get_key_from_kwargs("test", {})
+
+        a = get_key_from_kwargs("test", {}, "default")
+        self.assertEqual(a, "default")

@@ -39,13 +39,13 @@ class MissingProperty(Exception):
     pass
 
 
-def get_key_from_kwargs(key, kwargs, default=None):
+def get_key_from_kwargs(key, kwargs, default=None, optional=False):
     """
     Returns a key from kwargs or raises exception is no key is present
     Example:
     >>> get_key_from_kwargs("vpn_name", kwargs)
     'dev_testvpn'
-    >>> get_key_from_kwargs("missing_key", other_dict, default=True)
+    >>> get_key_from_kwargs("missing_key", other_dict, default=True, optional=False)
     True
     >>> get_key_from_kwargs("missin_key", kwargs)
     Traceback (most recent call last):
@@ -56,8 +56,10 @@ def get_key_from_kwargs(key, kwargs, default=None):
     """
     if key in kwargs:
         return kwargs.get(key)
-    elif default != None:
+    elif default is not None:
         return default
+    elif optional is True:
+        return
     else:
         logging.warning("Required kwarg %s not present" % key)
         raise (MissingProperty("%s is missing from kwargs" % key))

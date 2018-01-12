@@ -3,3 +3,4 @@ projects/default
 venv/
 .idea
 *.pyc
+data/total_word_feature_extractor.dat

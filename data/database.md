@@ -1,4 +1,11 @@
-## intent:capitalplugin__
+## intent:helpplugin
+- help
+- help!
+- halp
+- /?
+- /h
+
+## intent:capitalplugin
 - what is the capital of [france](country)?
 - what is the capital of [france](country)?
 - what is the capital of the [united states of america](country)?

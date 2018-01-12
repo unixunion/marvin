@@ -1,7 +1,7 @@
 import requests
 
 from libmarvin import util
-
+import logging
 
 class Session:
 
@@ -41,7 +41,10 @@ class Session:
                 return "exception %s" % e
         else:
             try:
-                plugin_method = self.get_intent_plugin_method(intent_name, 'default')
+                logging.info("getting intent plugin: %s" % intent_name)
+                plugin = self.get_intent_plugin(intent_name)
+                plugin_method = self.get_intent_plugin_method(plugin, 'default')
                 return plugin_method(author=author, line=line)
             except Exception as e:
+                logging.error( "unable to reach plugin: %s, %s" % (intent_name, e))
                 return "unable to reach plugin: %s" % intent_name

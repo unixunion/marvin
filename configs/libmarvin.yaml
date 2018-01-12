@@ -3,3 +3,4 @@ SOMEKEY: Some Other Value
 PLUGINS:
   - libmarvin.intents.nullplugin
   - libmarvin.intents.helloplugin
+  - libmarvin.intents.helpplugin

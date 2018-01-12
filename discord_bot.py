@@ -43,10 +43,12 @@ async def on_message(message):
 
     elif message.content.startswith('!'):
 
+        altered_content = re.sub(r'^!', '', message.content)
+
         session = get_user_session(message.author.name)
 
         tmp = await client.send_message(message.channel, 'Processing...')
-        result = session.query(author=message.author.name, line=message.content)
+        result = session.query(author=message.author.name, line=altered_content)
         await client.edit_message(tmp, '{}'.format(result))
     else:
         pass

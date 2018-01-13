@@ -2,7 +2,7 @@ import requests
 
 from libmarvin import util
 import logging
-
+import pprint
 
 def extract_entities(intent):
     # {'entity': 'user', 'value': '<@243698565086576641>', 'start': 4, 'end': 25, 'extractor': 'ner_mitie'}
@@ -43,7 +43,7 @@ class Session:
             r = requests.post("http://localhost:5000/parse", data='{"q": "%s"}' % line)
         except Exception as e:
             return "error: linquistic neural network is offline.", 0
-        print (r.json())
+        pprint.pprint (r.json())
 
         intent_name = r.json()['intent']['name']
         entities = r.json()['entities']

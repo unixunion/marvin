@@ -1,10 +1,13 @@
 import os
+import sys
 import re
 import libmarvin
 import libmarvin.settingsloader as settings
 import discord
 import asyncio
 import logging
+logging.basicConfig(format='[%(filename)s:%(lineno)s %(levelname)s %(message)s', stream=sys.stdout)
+logging.getLogger().setLevel(logging.INFO)
 
 from libmarvin.cache import Cache
 from libmarvin.session import Session
@@ -44,15 +47,17 @@ async def on_message(message):
     # msg = message # type: discord.Channel
 
     if client.user.id in message.raw_mentions:
-        # tmp = await client.send_message(message.channel, 'Processing...')
         altered_content = remove_self_mentions(message.content)
         session = get_user_session(message.author.name)
         result = await session.query(author=message.author.name, line=altered_content, message_object=message)
-        # await client.edit_message(tmp, '{}'.format(result))
-        # if result[1] > min_confidence:
         await client.send_message(message.channel, result[0])
 
-    # elif message.content.startswith('!'):
+    elif message.content.startswith('!'):
+        altered_content = re.sub(r'^!', '', message.content)
+        session = get_user_session(message.author.name)
+        result = await session.query(author=message.author.name, line=altered_content, message_object=message)
+        await client.send_message(message.channel, result[0])
+
     # elif message.author.id is not client.user.id:
     #     # tmp = await client.send_message(message.channel, 'Processing...')
     #     altered_content = re.sub(r'^!', '', message.content)

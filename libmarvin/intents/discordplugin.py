@@ -72,6 +72,22 @@ class DiscordPlugin(Plugin):
 
         return "This channel is called: '%s', and the topic is: '%s'" % (channel.name, channel.topic)
 
+    async def deafen(self, *args, **kwargs):
+        message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
+        user_id = get_key_from_kwargs('user', kwargs, get_key_from_kwargs('message_object', kwargs).author.id)
+        user_id = re.sub(r'<@(\d+)\>', '\\1', user_id)
+        member = await self.get_user_by_id(message_object, user_id) # type: discord.Member
+        await self.api.server_voice_state(member, deafen=True)
+        return "%s: told me to deafen %s" % (message_object.author.name, member.name)
+
+    async def mute(self, *args, **kwargs):
+        message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
+        user_id = get_key_from_kwargs('user', kwargs, get_key_from_kwargs('message_object', kwargs).author.id)
+        user_id = re.sub(r'<@(\d+)\>', '\\1', user_id)
+        member = await self.get_user_by_id(message_object, user_id) # type: discord.Member
+        await self.api.server_voice_state(member, mute=True)
+        return "%s: told me to mute %s" % (message_object.author.name, member.name)
+
     async def afk(self, *args, **kwargs):
         logging.info("afk somebody they say: %s, %s" % (args, kwargs))
 

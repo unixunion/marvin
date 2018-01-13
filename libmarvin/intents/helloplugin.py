@@ -31,8 +31,8 @@ class HelloPlugin(Plugin):
     @staticmethod
     async def quote_laws(*args, author=None, line=None, **kwargs):
         return """1st law: A robot may not injure a human being or, through inaction, allow a human being to come to harm.\n
-        2nd law: A robot must obey the orders given it by human beings except where such orders would conflict with the First Law.\n
-        3rd law: A robot must protect its own existence as long as such protection does not conflict with the First or Second Laws."""
+2nd law: A robot must obey the orders given it by human beings except where such orders would conflict with the First Law.\n
+3rd law: A robot must protect its own existence as long as such protection does not conflict with the First or Second Laws."""
 
     @staticmethod
     async def thanks(*args, author=None, line=None, **kwargs):

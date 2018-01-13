@@ -90,3 +90,23 @@
 - change the topic to [something beautiful is happening](retopic)
 - set the topic to [botz, the dawn of the end](retopic)
 - change the channel topic to [something different](retopic)
+
+## intent:discordplugin__mute
+- mute [<@243698565086576641>](user)
+- silence [<@243698565086576641>](user)
+- quiet [<@243698565086576641>](user)
+- mute
+
+## intent:discordplugin__deafen
+<!--- deafen [<@243698565086576641>](user)-->
+<!--- deafen [<@319179509603631105>](user)-->
+<!--- deaf [<@243698565086576641>](user)-->
+<!--- deaf [<@400643611667988490>](user)-->
+- deafen <@[243698565086576641](user)>
+- deafen <@[319179509603631105](user)>
+- deaf <@[243698565086576641](user)>
+- deaf <@[400643611667988490](user)>
+- deafen
+- deafen me
+- deaf
+- deaf me

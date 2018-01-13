@@ -1,0 +1,535 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "text": "deafen <@249305449478881280>",
+        "intent": "discordplugin__deafen",
+        "entities": [
+          {
+            "start": 7,
+            "end": 28,
+            "value": "<@249305449478881280>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "deafen",
+        "intent": "discordplugin__deafen",
+        "entities": []
+      },
+      {
+        "text": "deaf <@249305449478881280>",
+        "intent": "discordplugin__deafen",
+        "entities": [
+          {
+            "start": 5,
+            "end": 26,
+            "value": "<@249305449478881280>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "hello",
+        "intent": "helloplugin__hello",
+        "entities": []
+      },
+      {
+        "text": "hi",
+        "intent": "helloplugin__hello",
+        "entities": []
+      },
+      {
+        "text": "hello there",
+        "intent": "helloplugin__hello",
+        "entities": []
+      },
+      {
+        "text": "deaf",
+        "intent": "discordplugin__deafen",
+        "entities": []
+      },
+      {
+        "text": "hej",
+        "intent": "helloplugin__hello",
+        "entities": []
+      },
+      {
+        "text": "help",
+        "intent": "helpplugin",
+        "entities": []
+      },
+      {
+        "text": "about",
+        "intent": "helpplugin",
+        "entities": []
+      },
+      {
+        "text": "help marvin",
+        "intent": "helpplugin",
+        "entities": []
+      },
+      {
+        "text": "info",
+        "intent": "helpplugin",
+        "entities": []
+      },
+      {
+        "text": "tell me about yourself",
+        "intent": "helpplugin",
+        "entities": []
+      },
+      {
+        "text": "help?",
+        "intent": "helpplugin",
+        "entities": []
+      },
+      {
+        "text": "bye",
+        "intent": "helloplugin__gbye",
+        "entities": []
+      },
+      {
+        "text": "goodbye",
+        "intent": "helloplugin__gbye",
+        "entities": []
+      },
+      {
+        "text": "good bye",
+        "intent": "helloplugin__gbye",
+        "entities": []
+      },
+      {
+        "text": "gbye",
+        "intent": "helloplugin__gbye",
+        "entities": []
+      },
+      {
+        "text": "what is your status",
+        "intent": "helloplugin__status",
+        "entities": []
+      },
+      {
+        "text": "how are you",
+        "intent": "helloplugin__status",
+        "entities": []
+      },
+      {
+        "text": "whats up",
+        "intent": "helloplugin__status",
+        "entities": []
+      },
+      {
+        "text": "all good?",
+        "intent": "helloplugin__status",
+        "entities": []
+      },
+      {
+        "text": "how you",
+        "intent": "helloplugin__status",
+        "entities": []
+      },
+      {
+        "text": "how you doing",
+        "intent": "helloplugin__status",
+        "entities": []
+      },
+      {
+        "text": "thanks",
+        "intent": "helloplugin__thanks",
+        "entities": []
+      },
+      {
+        "text": "thank you",
+        "intent": "helloplugin__thanks",
+        "entities": []
+      },
+      {
+        "text": "thankyou",
+        "intent": "helloplugin__thanks",
+        "entities": []
+      },
+      {
+        "text": "thanks bro",
+        "intent": "helloplugin__thanks",
+        "entities": []
+      },
+      {
+        "text": "thanks for all that you do",
+        "intent": "helloplugin__thanks",
+        "entities": []
+      },
+      {
+        "text": "thanks for everything",
+        "intent": "helloplugin__thanks",
+        "entities": []
+      },
+      {
+        "text": "state the three laws",
+        "intent": "helloplugin__quote_laws",
+        "entities": []
+      },
+      {
+        "text": "what are the laws of robotics",
+        "intent": "helloplugin__quote_laws",
+        "entities": []
+      },
+      {
+        "text": "quote operational limitations",
+        "intent": "helloplugin__quote_laws",
+        "entities": []
+      },
+      {
+        "text": "state the laws of robotics",
+        "intent": "helloplugin__quote_laws",
+        "entities": []
+      },
+      {
+        "text": "afk <@243698565086576641>",
+        "intent": "discordplugin__afk",
+        "entities": [
+          {
+            "start": 4,
+            "end": 25,
+            "value": "<@243698565086576641>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "kick <@400643611667988490>",
+        "intent": "discordplugin__afk",
+        "entities": [
+          {
+            "start": 5,
+            "end": 26,
+            "value": "<@400643611667988490>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "boot <@319179509603631105>",
+        "intent": "discordplugin__afk",
+        "entities": [
+          {
+            "start": 5,
+            "end": 26,
+            "value": "<@319179509603631105>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "afk",
+        "intent": "discordplugin__afk",
+        "entities": []
+      },
+      {
+        "text": "what is this channel about",
+        "intent": "discordplugin__channel",
+        "entities": []
+      },
+      {
+        "text": "what is this channel",
+        "intent": "discordplugin__channel",
+        "entities": []
+      },
+      {
+        "text": "rename channel to dont-date-robots",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 18,
+            "end": 34,
+            "value": "dont-date-robots",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "rename this channel to bot-palace",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 23,
+            "end": 33,
+            "value": "bot-palace",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "change channel name to bot-zub-zub",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 23,
+            "end": 34,
+            "value": "bot-zub-zub",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "change topic to 'there are monsters in the dark'",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 17,
+            "end": 47,
+            "value": "there are monsters in the dark",
+            "entity": "retopic"
+          }
+        ]
+      },
+      {
+        "text": "change the topic to 'what happens with bots, doesnt always stay with bots'",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 21,
+            "end": 73,
+            "value": "what happens with bots, doesnt always stay with bots",
+            "entity": "retopic"
+          }
+        ]
+      },
+      {
+        "text": "set topic to 'war with the machines'",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 14,
+            "end": 35,
+            "value": "war with the machines",
+            "entity": "retopic"
+          }
+        ]
+      },
+      {
+        "text": "set the topic to 're-evaluating the three laws'",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 18,
+            "end": 46,
+            "value": "re-evaluating the three laws",
+            "entity": "retopic"
+          }
+        ]
+      },
+      {
+        "text": "set channel name to 'mickey-mouse-castle'",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 21,
+            "end": 40,
+            "value": "mickey-mouse-castle",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "change the topic to 'what happens in vegas'",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 21,
+            "end": 42,
+            "value": "what happens in vegas",
+            "entity": "retopic"
+          }
+        ]
+      },
+      {
+        "text": "change the channel name to my-domain",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 27,
+            "end": 36,
+            "value": "my-domain",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "change channel name to bot-place",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 23,
+            "end": 34,
+            "value": "bot-place",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "set the channel name to floozie-bots",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 24,
+            "end": 36,
+            "value": "floozie-bots",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "change the channel name to robotz-plz",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 27,
+            "end": 37,
+            "value": "robotz-plz",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "rename this channel to slegsbots",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 23,
+            "end": 32,
+            "value": "slegsbots",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "rename channel to simplebots",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 18,
+            "end": 28,
+            "value": "simplebots",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "set channel name to bottnet",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 20,
+            "end": 27,
+            "value": "bottnet",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "set channel topic to 'the best bot in the world'",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 22,
+            "end": 47,
+            "value": "the best bot in the world",
+            "entity": "retopic"
+          }
+        ]
+      },
+      {
+        "text": "set channel topic to 'marvins home'",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 22,
+            "end": 34,
+            "value": "marvins home",
+            "entity": "retopic"
+          }
+        ]
+      },
+      {
+        "text": "change topic to 'lemonbot party'",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 17,
+            "end": 31,
+            "value": "lemonbot party",
+            "entity": "retopic"
+          }
+        ]
+      },
+      {
+        "text": "mute <@243698565086576641>",
+        "intent": "discordplugin__mute",
+        "entities": [
+          {
+            "start": 5,
+            "end": 26,
+            "value": "<@243698565086576641>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "silence <@243698565086576641>",
+        "intent": "discordplugin__mute",
+        "entities": [
+          {
+            "start": 8,
+            "end": 29,
+            "value": "<@243698565086576641>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "mute <@400643611667988490>",
+        "intent": "discordplugin__mute",
+        "entities": [
+          {
+            "start": 5,
+            "end": 26,
+            "value": "<@400643611667988490>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "mute",
+        "intent": "discordplugin__mute",
+        "entities": []
+      },
+      {
+        "text": "quote laws",
+        "intent": "helloplugin__quote_laws",
+        "entities": []
+      }
+    ],
+    "regex_features": [
+      {
+        "name": "user",
+        "pattern": "<@\\d+>"
+      },
+      {
+        "name": "greet",
+        "pattern": "hey[^\\s]*"
+      }
+    ],
+    "entity_synonyms": [
+      {
+        "value": "New York City",
+        "synonyms": [
+          "NYC",
+          "nyc",
+          "the big apple"
+        ]
+      }
+    ]
+  }
+}

@@ -54,6 +54,9 @@ class DiscordPlugin(Plugin):
         member = discord.utils.get(message.server.members, id=user_id)
         return member
 
+    """
+    Do things to / in channels
+    """
     async def channel(self, *args, **kwargs):
         logging.info("about this channel they say: %s, %s" % (args, kwargs))
         message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
@@ -67,7 +70,7 @@ class DiscordPlugin(Plugin):
         if retopic:
             await self.api.edit_channel(channel, topic=retopic)
 
-        return "This channel is called: %s, and the topic is %s" % (channel.name, channel.topic)
+        return "This channel is called: '%s', and the topic is: '%s'" % (channel.name, channel.topic)
 
     async def afk(self, *args, **kwargs):
         logging.info("afk somebody they say: %s, %s" % (args, kwargs))

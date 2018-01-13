@@ -38,7 +38,11 @@ class Session:
         return plugin.get_method_by_name(method, *args, **kwargs)
 
     async def query(self, line=None, author=None, *args, **kwargs):
-        r = requests.post("http://localhost:5000/parse", data='{"q": "%s"}' % line)
+
+        try:
+            r = requests.post("http://localhost:5000/parse", data='{"q": "%s"}' % line)
+        except Exception as e:
+            return "error: linquistic neural network is offline.", 0
         print (r.json())
 
         intent_name = r.json()['intent']['name']

@@ -17,14 +17,17 @@ Cache.set("discord_api", client)
 
 min_confidence = 0.45
 
+
 def remove_self_mentions(content):
     logging.info("remove_self_mentions from: %s" % content)
-    return re.sub(r'<@\d+>', '', content)
+    return re.sub(r'<@%s>' % client.user.id, '', content).strip()
+
 
 def get_user_session(user):
     if not user in sessions:
         sessions[user] = Session()
     return sessions[user]
+
 
 @client.event
 async def on_ready():
@@ -33,9 +36,9 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
+
 @client.event
 async def on_message(message):
-
     logging.info(message.content)
 
     # msg = message # type: discord.Channel
@@ -58,8 +61,12 @@ async def on_message(message):
     #     # await client.edit_message(tmp, '{}'.format(result))
     #     if result[1] > min_confidence:
     #         await client.send_message(message.channel, result[0])
-    else:
-        logging.info("message %s author: %s" % (message.content, message.author.id))
+    elif message.author.id != client.user.id:
+        logging.info("message %s author: %s" % (message.content, message.author.name))
         pass
+    else:
+        logging.info("ignoring message from myself")
+        pass
+
 
 client.run(os.environ['DISCORD_KEY'])

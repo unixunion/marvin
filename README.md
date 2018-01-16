@@ -7,6 +7,21 @@ to determine intents.
 
 *NOT READY*, NLP development underway, nothing else is done.
 
+# plugin objects
+
+Objects are passed via kwargs to plugin methods, methods then use a custom
+kwarg getter which will raise if requirements are not met.
+
+## default kwargs
+
+|kwarg|contents|type|
+|-----|--------|----|
+|message_object|the message|[discord.Message](http://discordpy.readthedocs.io/en/latest/api.html#discord.Message)|
+|||
+
+
+
+
 # requirements
 
     conda create -n py36-marvin python=3.6
@@ -90,3 +105,7 @@ http://rasa-nlu.readthedocs.io/en/latest/tutorial.html#preparing-the-training-da
 
 https://rasa-nlu.readthedocs.io/en/latest/pipeline.html#ner-spacy
 http://rasa-nlu.readthedocs.io/en/latest/installation.html#section-backends
+
+## Todo
+
+* context aware multi message interactions

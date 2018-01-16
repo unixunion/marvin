@@ -1,3 +1,6 @@
+import inspect
+from inspect import FullArgSpec
+
 __author__ = 'keghol'
 
 """
@@ -60,11 +63,21 @@ class Plugin(object):
     plugins = []
     plugins_dict = OrderedDict()
     plugin_name = "Plugin"
+
+    context_locking = False
+    lock_session = False
+    lock_session_default_method = None
+
     """ the plugin's name, override this in the derived class!"""
     exists = False
 
     def __init__(self, *args, **kwargs):
         logging.debug("Plugin Init: %s, %s" % (args, kwargs))
+
+    # async def create_cls(cls, *args, **kwargs):
+    #     foo = Foo(settings)
+    #     await foo._init()
+    #     return foo
 
     def register(self, object_class, *args, **kwargs):
         """
@@ -79,6 +92,15 @@ class Plugin(object):
         """
         logging.info("Registering Plugin id: %s from class: %s " % (object_class.plugin_name, object_class))
         o = object_class
+
+        # TODO FIXME
+        # plugin_members = inspect.getmembers(o)
+        # for pm in plugin_members:
+        #     print ("%s: %s" % (o.plugin_name, pm))
+
+        # print (inspect.getfullargspec(o.__init__))
+        # plugin_init_parameters = inspect.getfullargspec(o.__init__) # type:FullArgSpec
+
         self.plugins.append(o)
         self.plugins_dict[object_class.plugin_name] = o
 
@@ -128,33 +150,44 @@ class Plugin(object):
         except:
             logging.warning("No plugin named: %s found, available plugins are: %s" % (args[0], self.plugins_dict))
             logging.warning(
-                    "Please check the plugin is listed in the yaml config and that you have @libsolace.plugin_registry.register in the class")
+                "Please check the plugin is listed in the yaml config and that you have @libsolace.plugin_registry.register in the class")
             raise
 
-    def set_exists(self, state):
-        """set_exists is used as caching in order to cut down on SEMP queries to validate existence of items. For example,
-        if you create a new VPN in "batch" mode, After the "create-vpn" XML is generated, set_exists is set to True so
-        subsequent requests decorated with the `only_if_exists` will function correctly since set_exists states that the
-        object will exist.
-        :param state: the existence state of the object
-        :type state: bool
-        :return:
-        """
-        module = get_calling_module(point=3)
-        logging.info("Calling module: %s, Setting Exists bit: %s" % (module, state))
-        self.exists = state
+    # is the plugin a context locking one?
+    def is_context_locking(self) -> bool:
+        return self.context_locking
 
+    # set the session locking to value
+    def set_locking_session(self, value: bool):
+        self.lock_session = value
 
-class PluginResponse(object):
-    """
-    Encapsulating class for holding SEMP requests and their accompanying kwargs.
-    Example:
-    >>> request = PluginResponse('<rpc semp-version="soltr/7_1_1"><show><memory/></show></rpc>', primaryOnly=True)
-    >>> request.xml
-    '<rpc semp-version="soltr/7_1_1"><show><memory/></show></rpc>'
-    """
-    def __init__(self, xml, **kwargs):
-        self.xml = xml
-        """ the XML """
-        self.kwargs = kwargs
-        """ the kwargs """
+    # is the plugin currently locking a session
+    def is_locking_session(self):
+        return self.lock_session
+
+    # def set_exists(self, state):
+    #     """set_exists is used as caching in order to cut down on SEMP queries to validate existence of items. For example,
+    #     if you create a new VPN in "batch" mode, After the "create-vpn" XML is generated, set_exists is set to True so
+    #     subsequent requests decorated with the `only_if_exists` will function correctly since set_exists states that the
+    #     object will exist.
+    #     :param state: the existence state of the object
+    #     :type state: bool
+    #     :return:
+    #     """
+    #     module = get_calling_module(point=3)
+    #     logging.info("Calling module: %s, Setting Exists bit: %s" % (module, state))
+    #     self.exists = state
+
+# class PluginResponse(object):
+#     """
+#     Encapsulating class for holding SEMP requests and their accompanying kwargs.
+#     Example:
+#     >>> request = PluginResponse('<rpc semp-version="soltr/7_1_1"><show><memory/></show></rpc>', primaryOnly=True)
+#     >>> request.xml
+#     '<rpc semp-version="soltr/7_1_1"><show><memory/></show></rpc>'
+#     """
+#     def __init__(self, xml, **kwargs):
+#         self.xml = xml
+#         """ the XML """
+#         self.kwargs = kwargs
+#         """ the kwargs """

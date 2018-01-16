@@ -1,13 +1,15 @@
 import os
 import sys
+
+import logging
+logging.basicConfig(stream=sys.stdout ,format='[%(filename)s:%(lineno)s %(levelname)s %(message)s')
+logging.getLogger().setLevel(logging.INFO)
+
 import re
 import libmarvin
 import libmarvin.settingsloader as settings
 import discord
 import asyncio
-import logging
-logging.basicConfig(format='[%(filename)s:%(lineno)s %(levelname)s %(message)s', stream=sys.stdout)
-logging.getLogger().setLevel(logging.INFO)
 
 from libmarvin.cache import Cache
 from libmarvin.session import Session
@@ -44,13 +46,25 @@ async def on_ready():
 async def on_message(message):
     logging.info(message.content)
 
-    # msg = message # type: discord.Channel
+    #msg = message # type: discord.Channel
 
-    if client.user.id in message.raw_mentions:
+    if message.channel.is_private and message.author.id != client.user.id:
         altered_content = remove_self_mentions(message.content)
         session = get_user_session(message.author.name)
         result = await session.query(author=message.author.name, line=altered_content, message_object=message)
         await client.send_message(message.channel, result[0])
+
+    elif client.user.id in message.raw_mentions:
+        altered_content = remove_self_mentions(message.content)
+        session = get_user_session(message.author.name)
+        result = await session.query(author=message.author.name, line=altered_content, message_object=message)
+        await client.send_message(message.channel, result[0])
+
+    elif message.content.startswith('!dump_msgs'):
+        tmp = await client.send_message(message.channel, 'Dumping messages to log')
+        async for log in client.logs_from(message.channel, limit=65534):
+            logging.info("discord_dump_msg: %s" % log.content)
+        await client.edit_message(tmp, 'Done.')
 
     elif message.content.startswith('!'):
         altered_content = re.sub(r'^!', '', message.content)

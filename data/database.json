@@ -58,7 +58,14 @@
       {
         "text": "help",
         "intent": "helpplugin",
-        "entities": []
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "help",
+            "entity": "help"
+          }
+        ]
       },
       {
         "text": "about",
@@ -68,7 +75,14 @@
       {
         "text": "help marvin",
         "intent": "helpplugin",
-        "entities": []
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "help",
+            "entity": "help"
+          }
+        ]
       },
       {
         "text": "info",
@@ -83,7 +97,14 @@
       {
         "text": "help?",
         "intent": "helpplugin",
-        "entities": []
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "help",
+            "entity": "help"
+          }
+        ]
       },
       {
         "text": "bye",
@@ -509,6 +530,486 @@
         "text": "quote laws",
         "intent": "helloplugin__quote_laws",
         "entities": []
+      },
+      {
+        "text": "deafen <@400643611667988490>",
+        "intent": "discordplugin__deafen",
+        "entities": [
+          {
+            "start": 7,
+            "end": 28,
+            "value": "<@400643611667988490>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "undeafen",
+        "intent": "discordplugin__undeafen",
+        "entities": []
+      },
+      {
+        "text": "undeafen <@249305449478881280>",
+        "intent": "discordplugin__undeafen",
+        "entities": [
+          {
+            "start": 9,
+            "end": 30,
+            "value": "<@249305449478881280>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "unmute <@243698565086576641>",
+        "intent": "discordplugin__unmute",
+        "entities": [
+          {
+            "start": 7,
+            "end": 28,
+            "value": "<@243698565086576641>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "unmute",
+        "intent": "discordplugin__unmute",
+        "entities": []
+      },
+      {
+        "text": "unmute <@400643611667988490>",
+        "intent": "discordplugin__unmute",
+        "entities": [
+          {
+            "start": 7,
+            "end": 28,
+            "value": "<@400643611667988490>",
+            "entity": "user"
+          }
+        ]
+      },
+      {
+        "text": "change channel name to trekkies",
+        "intent": "discordplugin__channel",
+        "entities": [
+          {
+            "start": 23,
+            "end": 31,
+            "value": "trekkies",
+            "entity": "rename"
+          }
+        ]
+      },
+      {
+        "text": "I would like to order a pizza",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": []
+      },
+      {
+        "text": "can I order a pizza",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": []
+      },
+      {
+        "text": "I would like a pizza please",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": []
+      },
+      {
+        "text": "order me a pizza",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": []
+      },
+      {
+        "text": "I would like a cacciatore pizza",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 15,
+            "end": 25,
+            "value": "cacciatore",
+            "entity": "pizza_name"
+          }
+        ]
+      },
+      {
+        "text": "can I get a chicken pizza",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 12,
+            "end": 19,
+            "value": "chicken",
+            "entity": "pizza_name"
+          }
+        ]
+      },
+      {
+        "text": "I would like a mexican chili pizza",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 15,
+            "end": 28,
+            "value": "mexican chili",
+            "entity": "pizza_name"
+          }
+        ]
+      },
+      {
+        "text": "whats on the menu",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "I would like to cancel the order",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 16,
+            "end": 22,
+            "value": "cancel",
+            "entity": "cancel"
+          }
+        ]
+      },
+      {
+        "text": "cancel the order",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 0,
+            "end": 6,
+            "value": "cancel",
+            "entity": "cancel"
+          }
+        ]
+      },
+      {
+        "text": "i'd like to cancel",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 12,
+            "end": 18,
+            "value": "cancel",
+            "entity": "cancel"
+          }
+        ]
+      },
+      {
+        "text": "cancel the order",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 0,
+            "end": 6,
+            "value": "cancel",
+            "entity": "cancel"
+          }
+        ]
+      },
+      {
+        "text": "whats on the menu",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "show me the menu",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 12,
+            "end": 16,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "the address is: 1 crescent st, WC1",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 16,
+            "end": 34,
+            "value": "1 crescent st, WC1",
+            "entity": "address"
+          }
+        ]
+      },
+      {
+        "text": "deliver to: blowoutstreet 9, 12133",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 12,
+            "end": 34,
+            "value": "blowoutstreet 9, 12133",
+            "entity": "address"
+          }
+        ]
+      },
+      {
+        "text": "I would like to cancel my order",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 16,
+            "end": 22,
+            "value": "cancel",
+            "entity": "cancel"
+          }
+        ]
+      },
+      {
+        "text": "I will pay by card",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 14,
+            "end": 18,
+            "value": "card",
+            "entity": "payment_method"
+          },
+          {
+            "start": 14,
+            "end": 18,
+            "value": "card",
+            "entity": ""
+          }
+        ]
+      },
+      {
+        "text": "Can I pay with card?",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 15,
+            "end": 19,
+            "value": "card",
+            "entity": "payment_method"
+          }
+        ]
+      },
+      {
+        "text": "I will pay with cash",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 16,
+            "end": 20,
+            "value": "cash",
+            "entity": "payment_method"
+          }
+        ]
+      },
+      {
+        "text": "I'd like a cacciatore please",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 11,
+            "end": 21,
+            "value": "cacciatore",
+            "entity": "pizza_name"
+          }
+        ]
+      },
+      {
+        "text": "id like a banana pizza",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 10,
+            "end": 16,
+            "value": "banana",
+            "entity": "pizza_name"
+          }
+        ]
+      },
+      {
+        "text": "The address is 1 st. lewis road",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 15,
+            "end": 31,
+            "value": "1 st. lewis road",
+            "entity": "address"
+          }
+        ]
+      },
+      {
+        "text": "the address is: 17 my way road",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 16,
+            "end": 30,
+            "value": "17 my way road",
+            "entity": "address"
+          }
+        ]
+      },
+      {
+        "text": "help",
+        "intent": "helpplugin",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "help",
+            "entity": "help"
+          }
+        ]
+      },
+      {
+        "text": "help me",
+        "intent": "helpplugin",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "help",
+            "entity": "help"
+          }
+        ]
+      },
+      {
+        "text": "I need help",
+        "intent": "help",
+        "entities": [
+          {
+            "start": 7,
+            "end": 11,
+            "value": "help",
+            "entity": "help"
+          }
+        ]
+      },
+      {
+        "text": "help please",
+        "intent": "helpplugin",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "help",
+            "entity": "help"
+          }
+        ]
+      },
+      {
+        "text": "I would like a cacciatore",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 15,
+            "end": 25,
+            "value": "cacciatore",
+            "entity": "pizza_name"
+          }
+        ]
+      },
+      {
+        "text": "Can I have a Mexican",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 13,
+            "end": 20,
+            "value": "Mexican",
+            "entity": "pizza_name"
+          }
+        ]
+      },
+      {
+        "text": "I would like a cacciatore pizza",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 15,
+            "end": 25,
+            "value": "cacciatore",
+            "entity": "pizza_name"
+          }
+        ]
+      },
+      {
+        "text": "Confirm",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 0,
+            "end": 7,
+            "value": "Confirm",
+            "entity": "confirm"
+          }
+        ]
+      },
+      {
+        "text": "confirmed",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "confirmed",
+            "entity": "confirm"
+          }
+        ]
+      },
+      {
+        "text": "Confirm order",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 0,
+            "end": 7,
+            "value": "Confirm",
+            "entity": "confirm"
+          }
+        ]
+      },
+      {
+        "text": "confirm",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 0,
+            "end": 7,
+            "value": "confirm",
+            "entity": "confirm"
+          }
+        ]
+      },
+      {
+        "text": "whats on the menu",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
       }
     ],
     "regex_features": [

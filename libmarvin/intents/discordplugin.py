@@ -10,7 +10,6 @@ import asyncio
 
 from libmarvin.cache import Cache
 from libmarvin.util import get_key_from_kwargs
-# from discord_bot import get_client
 
 @libmarvin.plugin_registry.register
 class DiscordPlugin(Plugin):
@@ -24,12 +23,11 @@ class DiscordPlugin(Plugin):
         return "{'api'}"
 
     def __init__(self, *args, api=None, **kwargs):
+    # def __init__(self, api : discord.Client):
         logging.info("instantiating %s, args: %s, kwargs: %s" % (self, args, kwargs))
         self.args = args
         self.kwargs = kwargs
-        # self.api = get_key_from_kwargs("api", kwargs) # type: discord.Client
         self.api = Cache.get("discord_api") # type: discord.Client
-        # logging.info("permissions: %s" % self.api.get_user_info().perm)
 
     # default method to call if no double underscored method mentioned in intent name
     def default(self, *args, **kwargs):
@@ -38,20 +36,27 @@ class DiscordPlugin(Plugin):
     def help(self, *args, **kwargs):
         return "%s: manage discord stuff" % self.plugin_name
 
+
+    """
+    Helpers
+    """
+
     def get_channel_by_name(self, message, channel_name):
         channel = discord.utils.get(message.server.channels, name=channel_name, type=ChannelType.voice) # type: discord.Channel
         logging.info("Found channel: %s" % channel.type)
         return channel
-        # for c in self.api.get_all_channels(): # type:discord.Channel
-        #     logging.info("Checking channel: %s" % c.name )
-        #     if c.name == channel_name:
-        #         return c
-        # logging.warning("channel named: '%s' not fund" % channel_name)
-        # return None
 
-    async def get_user_by_id(self, message, user_id):
-        # result = await self.api.get_server(self.api.server.id).get_member(user_id)
+    def get_user_by_id(self, message, user_id):
         member = discord.utils.get(message.server.members, id=user_id)
+        return member
+
+    def get_member(self, **kwargs):
+        logging.info("getting member for kwargs: %s" % kwargs)
+        message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
+        user_id = get_key_from_kwargs('user', kwargs, get_key_from_kwargs('message_object', kwargs).author.id)
+        user_id = re.sub(r'<@(\d+)\>', '\\1', user_id)
+        member = discord.utils.get(message_object.server.members, id=user_id)
+        logging.info("got member: %s" % member)
         return member
 
     """
@@ -62,31 +67,43 @@ class DiscordPlugin(Plugin):
         message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
         channel = message_object.channel # type:discord.Channel
 
-        rename = get_key_from_kwargs("rename", kwargs, None, optional=True)
+        if channel.is_private:
+            return "This is a private channel, just between us, feel free to say anything. Nothing is logged"
+
+        rename = get_key_from_kwargs("rename", kwargs, None, is_optional=True)
         if rename:
             await self.api.edit_channel(channel, name=rename)
 
-        retopic = get_key_from_kwargs("retopic", kwargs, None, optional=True)
+        retopic = get_key_from_kwargs("retopic", kwargs, None, is_optional=True)
         if retopic:
             await self.api.edit_channel(channel, topic=retopic)
 
         return "This channel is called: '%s', and the topic is: '%s'" % (channel.name, channel.topic)
 
+
     async def deafen(self, *args, **kwargs):
         message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
-        user_id = get_key_from_kwargs('user', kwargs, get_key_from_kwargs('message_object', kwargs).author.id)
-        user_id = re.sub(r'<@(\d+)\>', '\\1', user_id)
-        member = await self.get_user_by_id(message_object, user_id) # type: discord.Member
+        member = self.get_member(**kwargs)
         await self.api.server_voice_state(member, deafen=True)
         return "%s: told me to deafen %s" % (message_object.author.name, member.name)
 
+    async def undeafen(self, *args, **kwargs):
+        message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
+        member = self.get_member(**kwargs)
+        await self.api.server_voice_state(member, deafen=False)
+        return "%s: told me to undeafen %s" % (message_object.author.name, member.name)
+
     async def mute(self, *args, **kwargs):
         message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
-        user_id = get_key_from_kwargs('user', kwargs, get_key_from_kwargs('message_object', kwargs).author.id)
-        user_id = re.sub(r'<@(\d+)\>', '\\1', user_id)
-        member = await self.get_user_by_id(message_object, user_id) # type: discord.Member
+        member = self.get_member(**kwargs)
         await self.api.server_voice_state(member, mute=True)
         return "%s: told me to mute %s" % (message_object.author.name, member.name)
+
+    async def unmute(self, *args, **kwargs):
+        message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
+        member = self.get_member(**kwargs)
+        await self.api.server_voice_state(member, mute=False)
+        return "%s: told me to unmute %s" % (message_object.author.name, member.name)
 
     async def afk(self, *args, **kwargs):
         logging.info("afk somebody they say: %s, %s" % (args, kwargs))
@@ -99,7 +116,7 @@ class DiscordPlugin(Plugin):
 
             user_id = re.sub(r'<@(\d+)\>', '\\1', user_id)
 
-            member = await self.get_user_by_id(message_object, user_id)
+            member = self.get_user_by_id(message_object, user_id)
             logging.info("member move for: %s " % member)
 
             # get target channel
@@ -116,12 +133,11 @@ class DiscordPlugin(Plugin):
             logging.info("moving %s to %s" % (member, channel))
             logging.info("moving id: %s to name:%s" % (member.name, getattr(channel, 'type')))
             logging.info("moving %s to %s" % (type(member), type(channel)))
-            channel_obj = self.api.get_channel(channel)
+            # channel_obj = self.api.get_channel(channel)
 
             # self.api.get_user_info(used_id)
 
-
-            result = await self.api.move_member(member, channel)
+            await self.api.move_member(member, channel)
             return "moved %s to %s" % (member.name, channel.name)
 
             # return result
@@ -129,3 +145,4 @@ class DiscordPlugin(Plugin):
         except Exception as e:
             logging.error("error moving member: %s" % e)
             return "%s: I'm afraid I can't do that Dave..." % self.plugin_name
+

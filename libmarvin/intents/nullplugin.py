@@ -24,3 +24,7 @@ class NullPlugin(Plugin):
     @staticmethod
     def some_static_method(*args, **kwargs):
         return args, kwargs
+
+    @staticmethod
+    def help():
+        return "NullPlugin Help Stub"

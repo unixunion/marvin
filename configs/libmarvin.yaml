@@ -5,3 +5,4 @@ PLUGINS:
   - libmarvin.intents.helloplugin
   - libmarvin.intents.helpplugin
   - libmarvin.intents.discordplugin
+  - libmarvin.intents.pizzaplugin

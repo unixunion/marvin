@@ -11,7 +11,7 @@ import functools
 import logging
 from collections import OrderedDict
 
-from libmarvin.util import get_calling_module
+from libmarvin.util import get_calling_module, get_key_from_kwargs
 
 
 class PluginClass(type):
@@ -165,18 +165,15 @@ class Plugin(object):
     def is_locking_session(self):
         return self.lock_session
 
-    # def set_exists(self, state):
-    #     """set_exists is used as caching in order to cut down on SEMP queries to validate existence of items. For example,
-    #     if you create a new VPN in "batch" mode, After the "create-vpn" XML is generated, set_exists is set to True so
-    #     subsequent requests decorated with the `only_if_exists` will function correctly since set_exists states that the
-    #     object will exist.
-    #     :param state: the existence state of the object
-    #     :type state: bool
-    #     :return:
-    #     """
-    #     module = get_calling_module(point=3)
-    #     logging.info("Calling module: %s, Setting Exists bit: %s" % (module, state))
-    #     self.exists = state
+    # returns the data from the session
+    def get_data(self, *args, **kwargs):
+        return self.begin_session(*args, **kwargs).get_data()
+
+    def destroy_session(self, *args, **kwargs):
+        message_object = get_key_from_kwargs('message_object', kwargs)  # type: discord.Message
+        user = message_object.author.id  # type: discord.User
+        self.dialog_sessions[user] = None
+        self.dialog_sessions.pop(user)
 
 # class PluginResponse(object):
 #     """

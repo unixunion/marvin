@@ -18,4 +18,5 @@ class HelpPlugin(Plugin):
 
     # default method to call if no double underscored method mentioned in intent name
     async def default(self, *args, **kwargs):
+        logging.info("help: %s, %s" % (args, kwargs))
         return "I'm marvin, I'm a Natural Language Processing chat-bot! check my source: https://github.com/unixunion/marvin"

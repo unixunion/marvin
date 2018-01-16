@@ -893,7 +893,7 @@
       },
       {
         "text": "I need help",
-        "intent": "help",
+        "intent": "helpplugin",
         "entities": [
           {
             "start": 7,
@@ -1008,6 +1008,156 @@
             "end": 17,
             "value": "menu",
             "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "whats on the menu?",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "show me the menu",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 12,
+            "end": 16,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "Can I see the menu",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 14,
+            "end": 18,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "can I pay with card?",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 15,
+            "end": 19,
+            "value": "card",
+            "entity": "payment_method"
+          }
+        ]
+      },
+      {
+        "text": "I pay in cash",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 9,
+            "end": 13,
+            "value": "cash",
+            "entity": "payment_method"
+          }
+        ]
+      },
+      {
+        "text": "whats on the menu pizzabot?",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "I would like a cacciatore pizza please",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 15,
+            "end": 25,
+            "value": "cacciatore",
+            "entity": "pizza_name"
+          }
+        ]
+      },
+      {
+        "text": "show the menu",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 9,
+            "end": 13,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "The address is 1 richards way, 12312",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 15,
+            "end": 36,
+            "value": "1 richards way, 12312",
+            "entity": "address"
+          }
+        ]
+      },
+      {
+        "text": "whats on the menu?",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "menu",
+            "entity": "menu"
+          }
+        ]
+      },
+      {
+        "text": "I would like to order a chicken pizza and pay with cash.",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 24,
+            "end": 31,
+            "value": "chicken",
+            "entity": "pizza_name"
+          },
+          {
+            "start": 51,
+            "end": 55,
+            "value": "cash",
+            "entity": "payment_method"
+          }
+        ]
+      },
+      {
+        "text": "the address is: 24 dingleberry street, 71231",
+        "intent": "pizzaplugin__order_pizza",
+        "entities": [
+          {
+            "start": 16,
+            "end": 44,
+            "value": "24 dingleberry street, 71231",
+            "entity": "address"
           }
         ]
       }
